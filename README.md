@@ -18,7 +18,6 @@ sudo apt install ninja-build
 sudo apt install valgrind
 ```
 
-
 ### Virtual Machine
 
 Here is an Ubuntu 22.04 (LTS) virtual machine with these dependencies already installed:
@@ -77,13 +76,20 @@ To avoid starting every build from scratch, you can run the CMake build commands
 
 ```sh
 # This is called the configuration step and it prepares the build system inside cmake-build-grading.
-# Rerun only if you modify CMake files.
+# Rerun only if you deleted the build tree (the cmake-build-* directory), or if you want to change CMake options (-D etc.)
 cmake -D CMAKE_BUILD_TYPE=Release -S . -B cmake-build-grading
 
-# This performs the incremental build, run when modifying .h/.cpp files,
-# or after the command above.
+# Run this in all other scenarios. It will rerun the configuration step, and then perform the incremental build
 cmake --build cmake-build-grading
 
+# clean compiled files
+cmake --build cmake-build-grading --target clean
+
+# only build a specific target (e.g. interpreter):
+cmake --build cmake-build-grading --target mitscript
+
+# clean and build
+cmake --build cmake-build-grading --target mitscript --clean-first
 ```
 
 This will put the executables inside `cmake-build-grading/interpreter/*`.
@@ -124,12 +130,13 @@ cmake -D CMAKE_BUILD_TYPE=Debug -D BUILD_TESTS=ON -S . -B cmake-build-debug
 Uncomment line 2 of `build.sh`, and you're all set. To run directly,
 just run `make` inside the `interpreter` directory. 
 
-Tests are not currently supported when using make.
+Unit tests are not currently supported when using make.
 
 #### IDEs (CLion, Visual Studio Code, etc.)
 
 These will usually work with CMake right out of the box.
 Ask on Piazza if you have trouble connecting your IDE to the build system.
+
 ### Run
 
 Whether your parser is inside `interpreter/` or `cmake-build-*/interpreter`, invoke it as such:
@@ -139,6 +146,16 @@ Whether your parser is inside `interpreter/` or `cmake-build-*/interpreter`, inv
 ```
 
 #### Tests
+
+To run the provided tests:
+
+```sh
+# phase is a1,a2,...
+# [path/to/program] is the location of your executable, parser or interpreter
+tests/[phase]/run-tests.sh [public|private] [path/to/program]
+```
+
+#### Unit tests
 
 To run parser unit tests:
 
