@@ -10,10 +10,9 @@ q = f();
 h = g;
 
 if(h == g){
-  print("You should print this");
 }
 
-if(g == f){  
-  print("But not this");
+if(g == f){
 }
+print("Function equality didn't crash.");
 print("Bye!");

@@ -9,14 +9,6 @@ print("g(5) = " + g(5));
 q = f();
 h = g;
 
-if(h == g){
-  print("You should print this");
-}
-
-if(g == q){
-  print("But not this");
-}	
-
 a = {x:1; y:1;};
 b = {x:1; y:1;};
 c = a;
