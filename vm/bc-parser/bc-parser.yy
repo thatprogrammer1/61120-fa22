@@ -26,8 +26,8 @@ using namespace std;
     }
 
 
-#include "instructions.h"
-#include "types.h"
+#include "bytecode/instructions.h"
+#include "bytecode/types.h"
 
 #include <cassert>
 

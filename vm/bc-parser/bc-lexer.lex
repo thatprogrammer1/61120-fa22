@@ -1,9 +1,10 @@
 
 %{
 
-#include <string>
 #include "bc-parser.h"
-#include "utils.h"
+#include "bc-parser/utils.h"
+#include <string>
+
 using std::string;
 // You can put additional header files here.
 

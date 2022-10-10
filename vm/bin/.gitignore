@@ -1,0 +1,3 @@
+# output if using make
+*.cpp
+*.h

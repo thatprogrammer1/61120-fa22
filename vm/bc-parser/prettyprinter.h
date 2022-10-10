@@ -1,7 +1,7 @@
-#include "types.h"
+#include "bytecode/types.h"
 #include "utils.h"
-#include <memory>
 #include <iostream>
+#include <memory>
 
 class PrettyPrinter
 {
