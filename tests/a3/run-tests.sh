@@ -1,13 +1,16 @@
 #!/bin/bash
-ROOT=..
+# USAGE: ./run-tests.sh <path to mitscriptc> <path to mitscript> <path to results>
+# e.g. running from VM folder
+# >>>  ../tests/a3/run-tests.sh ./mitscriptc ./mitscript out.txt
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+ROOT=$SCRIPT_DIR/../../
+
 TIMEOUT=300
 
 COMPILER=$1
-INTERPRETER=$2
+INTERPRETER=$COMPILER
 RESULTS=$3
-
-# to run from project-root/vm folder
-# >>>  ../../../tests/a3/test.sh ./mitscriptc ./mitscript out.txt
 
 echo "" > $RESULTS
 
@@ -16,20 +19,20 @@ run_both_tests () {
 TOTAL=0
 COUNT=0
 
-for filename in $ROOT/$3/$4/*.mit; do
+for filename in $ROOT/$1/*.mit; do
     rm -f tmp.out tmp.err
-    $(timeout $TIMEOUT $1 $filename > tmp.mitbc 2>&1)
+    $(timeout $TIMEOUT $COMPILER $filename > tmp.mitbc 2>&1)
     CODE=$?
-		if [[ $filename =~ $ROOT/$3/$4/bad[0-9]*.mit && $CODE != 0 ]]; then
+		if [[ $filename =~ $ROOT/$1/bad[0-9]*.mit && $CODE != 0 ]]; then
         COUNT=$((COUNT+1))
     elif [[ $CODE = 0 ]]; then
         if test -f $filename.in; then
-            $(timeout $TIMEOUT $2 -b tmp.mitbc < $filename.in > tmp.out 2> tmp.err)
+            $(timeout $TIMEOUT $INTERPRETER -b tmp.mitbc < $filename.in > tmp.out 2> tmp.err)
         else
-            $(timeout $TIMEOUT $2 -b tmp.mitbc > tmp.out 2> tmp.err)
+            $(timeout $TIMEOUT $INTERPRETER -b tmp.mitbc > tmp.out 2> tmp.err)
         fi
         CODE=$?
-        if [[ $(cat $ROOT/$3/$4/$(basename $filename).out) =~ [A-Z][A-Za-z]+Exception ]]; then
+        if [[ $(cat $ROOT/$1/$(basename $filename).out) =~ [A-Z][A-Za-z]+Exception ]]; then
             # here we relaxed the exception matching requirement, and FWIW, bytecodetest6.mit.out
             # has two mentions of Exception, which throws off the grading anyway.
             # used to be [ $(cat tmp.err tmp.out) == *"${BASH_REMATCH[0]}"* ]
@@ -40,7 +43,7 @@ for filename in $ROOT/$3/$4/*.mit; do
                 echo "Fail Exception: $(basename $filename) (exit code $CODE)" >> $RESULTS
             fi
         else
-            if diff tmp.out $ROOT/$3/$4/$(basename $filename).out >> $RESULTS; then
+            if diff tmp.out $ROOT/$1/$(basename $filename).out >> $RESULTS; then
                 COUNT=$((COUNT+1))
             else
                 echo "Fail: $(basename $filename) (exit code $CODE)" >> $RESULTS
@@ -55,16 +58,16 @@ done
 echo "Done" >> $RESULTS
 }
 
-run_both_tests $COMPILER $INTERPRETER a2 public
+run_both_tests a2/public
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a2 public" >> $RESULTS
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a2 public"
-run_both_tests $COMPILER $INTERPRETER a2 private
+run_both_tests a2/private
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a2 private" >> $RESULTS
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a2 private"
-run_both_tests $COMPILER $INTERPRETER a3 public/mit
+run_both_tests a3/public/mit
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a3 public" >> $RESULTS
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a3 public"
-run_both_tests $COMPILER $INTERPRETER a3 private
+run_both_tests a3/private
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a3 private" >> $RESULTS
 echo "Passed $COUNT out of $TOTAL tests when testing compiler and interpreter separately on a3 private"
 
@@ -73,7 +76,7 @@ run_interp_tests(){
 TOTAL=0
 COUNT=0
 
-for filename in $ROOT/$1/$2/*.mit; do
+for filename in $ROOT/$1/*.mit; do
     rm -f tmp.out tmp.err
     if test -f $filename.in; then
         $(timeout $TIMEOUT $INTERPRETER -s $filename < $filename.in > tmp.out 2> tmp.err)
@@ -81,9 +84,9 @@ for filename in $ROOT/$1/$2/*.mit; do
         $(timeout $TIMEOUT $INTERPRETER -s $filename > tmp.out 2> tmp.err)
     fi
     CODE=$?
-		if [[ $filename =~ $ROOT/$1/$2/bad[0-9]*.mit && $CODE != 0 ]]; then
+		if [[ $filename =~ $ROOT/$1/bad[0-9]*.mit && $CODE != 0 ]]; then
         COUNT=$((COUNT+1))
-    elif [[ $(cat $ROOT/$1/$2/$(basename $filename).out) =~ [A-Z][A-Za-z]+Exception ]]; then
+    elif [[ $(cat $ROOT/$1/$(basename $filename).out) =~ [A-Z][A-Za-z]+Exception ]]; then
         # Used to be *"${BASH_REMATCH[0]}"*, but this was relaxed
         if [[ $(cat tmp.err tmp.out) == *"Exception"* ]]; then
             COUNT=$((COUNT+1))
@@ -91,7 +94,7 @@ for filename in $ROOT/$1/$2/*.mit; do
             echo "Fail Exception: $(basename $filename) (exit code $CODE)" >> $RESULTS
         fi
     else
-        if diff tmp.out $ROOT/$1/$2/$(basename $filename).out >> $RESULTS; then
+        if diff tmp.out $ROOT/$1/$(basename $filename).out >> $RESULTS; then
             COUNT=$((COUNT+1))
         else
             echo "Fail: $(basename $filename) (exit code $CODE)" >> $RESULTS
@@ -103,13 +106,13 @@ done
 echo "Done" >> $RESULTS
 }
 
-run_interp_tests a2 public
+run_interp_tests a2/public
 echo "Passed $COUNT out of $TOTAL tests when testing just interpreter on public a2"
-run_interp_tests a2 private
+run_interp_tests a2/private
 echo "Passed $COUNT out of $TOTAL tests when testing just interpreter on private a2"
-run_interp_tests a3 public/mit
+run_interp_tests a3/public/mit
 echo "Passed $COUNT out of $TOTAL tests when testing just interpreter on public a3"
-run_interp_tests a3 private
+run_interp_tests a3/private
 echo "Passed $COUNT out of $TOTAL tests when testing just interpreter on private a3"
 
 
