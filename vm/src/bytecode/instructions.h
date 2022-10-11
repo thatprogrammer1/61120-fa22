@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <vector>
+#include <cstdint>
 
 enum class Operation
 {

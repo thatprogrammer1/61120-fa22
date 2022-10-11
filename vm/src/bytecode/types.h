@@ -7,17 +7,20 @@
 #include <memory>
 #include <cstdint>
 
-struct Constant
-{
-    virtual ~Constant() { }
+struct Constant {
+  virtual ~Constant() {}
+
+  struct None;
+  struct Integer;
+  struct String;
+  struct Boolean;
 };
 
-struct None : public Constant
-{
-    virtual ~None() { }
+struct Constant::None : public Constant {
+    virtual ~None() {}
 };
 
-struct Integer : public Constant
+struct Constant::Integer : public Constant
 {
     Integer(int32_t value) 
     : value(value)
@@ -30,7 +33,7 @@ struct Integer : public Constant
     virtual ~Integer() { }
 };
 
-struct String : public Constant
+struct Constant::String : public Constant
 {
     String(std::string value)
     : value(value)
@@ -43,7 +46,7 @@ struct String : public Constant
     virtual ~String() { }
 };
 
-struct Boolean : public Constant
+struct Constant::Boolean : public Constant
 {
     Boolean(bool value) 
     : value(value)
@@ -56,17 +59,17 @@ struct Boolean : public Constant
     virtual ~Boolean() { }
 };
 
-struct Function 
+struct Function
 {
     // List of functions defined within this function (but not functions defined inside of nested functions)
     std::vector<Function *> functions_;
- 
+
     // List of constants used by the instructions within this function (but not nested functions)
     std::vector<Constant *> constants_;
 
     // The number of parameters to the function
     uint32_t parameter_count_;
-  
+
     // List of local variables
     // The first parameter_count_ variables are the function's parameters
     // in their order as given in the paraemter list
