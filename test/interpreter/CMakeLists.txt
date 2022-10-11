@@ -1,3 +1,8 @@
+include_directories(
+        ../../interpreter
+        ../../interpreter/src
+)
+
 add_executable(parser-tests ../run-unit-tests.cpp
         example-test.cpp
         # TODO add more tests
