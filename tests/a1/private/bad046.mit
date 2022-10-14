@@ -1,0 +1,5 @@
+y = 10;
+x = {bob: "bill"};
+if (3) {
+    return 2;
+}

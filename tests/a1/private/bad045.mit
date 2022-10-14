@@ -1,0 +1,20 @@
+x = fun(x ,y) {
+    if (x) {
+        y = fun(x) {
+            return 2;
+        };
+    } else {
+        y = fun(x, y, z) {
+             return x(54, what.what.when);
+        };
+    }
+    return y;
+};
+
+x();
+
+global y();
+
+print("What");
+
+return 2;

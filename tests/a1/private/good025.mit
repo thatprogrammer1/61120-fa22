@@ -1,0 +1,47 @@
+// stress test
+make_tree_node = fun(left, child, val) {
+	return {
+		left_c : left;
+		right_c : right;
+		v : val;
+	};
+};
+
+global identation;
+identation = 0;
+
+print_dfs_like = fun(tree_node) {
+	// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	ident_so_far = identation;
+	while (ident_so_far > 0) {
+		print(".");
+		ident_so_far = ident_so_far - 1;
+	}
+	// Etiam eget ligula eu lectus lobortis condimentum.
+	print(tree_node.val);
+	print("\n");
+	// Aliquam nonummy auctor massa.
+	identation = identation + 2;
+	if (!(tree_node.left_c == None)) {
+		print_dfs_like(tree_node.left_c);
+	}
+	// Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+	if (!(tree_node.right_c == None)) {
+		print_dfs_like(tree_node.right_c);
+	}
+	// Nulla at risus.
+	identation = identation - 2;
+};
+
+// Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus.
+global _foo_bar_;
+_foo_bar_ = -2 < 2;
+
+// Nam mattis, felis ut adipiscing.
+print_dfs_like(make_tree_node(
+				make_tree_node(make_tree_node(None, None, 1 + 2),
+							   make_tree_node(None, None, 3 + 4)),
+				make_tree_node(make_tree_node(None, None, 5 + 6),
+							   make_tree_node(None, None, "xyzzy")),
+                (42 > 4242) & (17 < 123) | (_foo_bar_)
+                ));

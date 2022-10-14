@@ -1,0 +1,12 @@
+// tests whether function declaration (with more complex body than test5.mit) works
+f = fun(x, y) {
+	if (x) {
+		return 0;
+	}
+	if (y) {
+		return 1;
+	}
+	else {
+		return 2;
+	}
+};

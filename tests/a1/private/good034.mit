@@ -1,0 +1,31 @@
+// Complex
+
+this = {
+    const: 4;
+    t: true;
+    f: false;
+    s: "str";
+    func: fun(a, b) {
+        if (a > this.const & a > b) {
+            return fun(c) {
+                return (a - b) * c;
+            };
+        } else {
+            while (a <= this.const) {
+                a = a + 1;
+                b = b - a;
+            }
+            print("a = " + a + "; b = " + b);
+            return fun(c) {
+                print("a = " + a + "; b = " + b + "; c = " + c);
+                return a * (b / c);
+            };
+        }
+    };
+    mod: fun(a, b) {
+        return a - ((a/b)*b);
+    };
+};
+f = this.func(0, 0);
+c = 999;
+print("f(c) = "+f(c) +"; this[None] = " + this[None]);

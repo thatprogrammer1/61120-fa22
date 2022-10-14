@@ -1,0 +1,19 @@
+// Records
+empty = {};
+r = {a: 13; atrue: 2;};
+a = r.a;
+b = r["a"];
+print(""+a);
+print(""+b);
+print(""+r);
+
+s = "a";
+c = r[s];
+d = r[s+true];
+
+x = "b";
+a = {a: 999; b: 2; c: x;};
+b = {a: a;};
+a.b = b;
+f = a[x].a.b.a[x].a.a;
+print(""+f);

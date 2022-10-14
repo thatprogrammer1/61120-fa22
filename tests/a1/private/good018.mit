@@ -1,0 +1,7 @@
+obj34 = {
+add: fun(a, b) { return a+b; };
+div: 0 + "adf";
+};
+
+x = !obj34.div;
+y = obj43["add"+3](x, 8);

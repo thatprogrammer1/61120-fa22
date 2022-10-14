@@ -1,0 +1,6 @@
+// test strange strings and weird cases
+
+quote = "this is something \" with some escaped \" characters";
+r = "this also \\ has some weird stuff";
+t = "so \t does this \t ' one\t";
+

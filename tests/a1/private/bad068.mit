@@ -1,0 +1,2 @@
+x = 1; // this is good
+1x = o; // not a variable name

@@ -1,0 +1,3 @@
+main = fun(argv argc) {
+    print("this should fail due to lack of comma in the list above");
+}

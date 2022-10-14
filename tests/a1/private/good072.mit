@@ -1,0 +1,27 @@
+a = 6;
+b = 19;
+c = 30;
+d = 2;
+
+eval = fun(a, b, c, d) {
+	valid = (
+		(a > 5 & a < 7) &
+		(b >= 10 & b < 20) &
+		c <= 30 &
+		d == 2
+	);
+
+	semivalid = (
+		(a > 5 & a < 7) |
+		(b >= 10 & b < 20) |
+		c <= 30 |
+		d == 2
+	);
+
+	return {
+		valid: valid;
+		semivalid: semivalid;
+	};
+};
+
+consoleLog(eval(a, b, c, d));

@@ -1,0 +1,2 @@
+// tests whether identifier naming works as expected (NOTE: although passes parsing, may fail semantic checks)
+__foo_bar_123__ = 4;

@@ -1,0 +1,8 @@
+// tests whether record work as expected
+x = {
+	_foo_ : 1 + 2;
+	_bar_ : 2 + 3;
+	_baz_ : fun(x, y) {
+		return 3 + 4;
+	};
+};

@@ -1,0 +1,13 @@
+x = 10;
+
+if (frank) {
+    return 2;
+} else {}
+
+while (1) {
+    return 3
+}
+
+y = 3;
+
+return 2;

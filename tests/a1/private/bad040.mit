@@ -1,0 +1,3 @@
+f = fun(A, b) {
+return a + b;}
+print(f(a, b));

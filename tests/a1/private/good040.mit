@@ -1,0 +1,2 @@
+a_str = "\"Hello World\"\nHello again, without quotes\t!";
+print(a_str);

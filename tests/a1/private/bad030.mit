@@ -1,0 +1,2 @@
+// cannot have non-name keys
+test = {5: "a"};

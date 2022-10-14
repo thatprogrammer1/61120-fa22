@@ -1,0 +1,87 @@
+// Merge sort
+
+mergesort = fun (list, l, r) {
+    if (r - l < 1) {
+        return 0;
+    }
+
+    if (r - l == 1) {
+        if (list[l] > list[l+1]) {
+            tmp = list[l];
+            list[l] = list[l+1];
+            list[l+1] = tmp;
+        }
+        return 0;
+    }
+
+    m = l + (r-l) / 2;
+    mergesort(list, l, m);
+    mergesort(list, m+1, r);
+
+    left = {};
+    right = {};
+
+    i = l;
+    while (i <= m) {
+        left[i] = list[i];
+        i = i + 1;
+    }
+    while(i <= r) {
+        // Can do i instead of i-m since not really an array
+        right[i] = list[i];
+        i = i + 1;
+    }
+
+    k = l;
+    i = l;
+    j = m+1;
+    while (i <= m & j <= r) {
+        if (left[i] < right[j]) {
+            list[k] = left[i];
+            i = i + 1;
+        } else {
+            list[k] = right[j];
+            j = j + 1;
+        }
+        k = k + 1;
+    }
+    while (i <= m) {
+        list[k] = left[i];
+        i = i + 1;
+        k = k + 1;
+    }
+    while (j <= r) {
+        list[k] = right[j];
+        j = j + 1;
+        k = k + 1;
+    }
+
+};
+
+
+//n = intcast(input());
+n = 10*1000;
+a = {};
+i = 0;
+while(i < n) {
+//    a[i] = intcast(input());
+    a[i] = __rand(n*n);
+    i = i + 1;
+}
+print("Filled");
+mergesort(a, 0, n-1);
+
+print("Done");
+//
+//i = 1;
+//s = "" + a[0];
+//while(i < n) {
+//    if (a[i] < a[i-1]) {
+//        print("Error");
+//    }
+//    s = s + " " + a[i];
+//    i = i + 1;
+//}
+//
+//
+//print(s);

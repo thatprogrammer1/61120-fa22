@@ -1,0 +1,11 @@
+x = 1;
+while(x < 10 & true) {
+  inc = fun(amt) {
+    x = x + amt;
+  };
+  if (x > 5) {
+    inc(2);
+  } else {
+    inc(1);
+  }
+}

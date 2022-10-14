@@ -1,0 +1,4 @@
+// missing brace
+test = fun () {
+y();
+x = 6;

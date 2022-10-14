@@ -1,0 +1,2 @@
+x = {a: "hi"; b: {c: 1; d: fun() {return e;};};};
+print(x.b.c[0]);

@@ -1,0 +1,2 @@
+// tests whether function call works (NOTE: although passes parsing, may fail semantic checks)
+_foo._bar._baz(1, 2, 3);

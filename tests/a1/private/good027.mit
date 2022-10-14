@@ -1,0 +1,4 @@
+// tests if statement with no else block (NOTE: although passes parsing, may fail semantic checks)
+if (_foo_ + 3 > 7) {
+	print(_my_obj._some_array[_bar._baz + abc]);
+}

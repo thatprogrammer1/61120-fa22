@@ -1,0 +1,6 @@
+x = -8*9;
+
+global y;
+y = None;
+
+return y;

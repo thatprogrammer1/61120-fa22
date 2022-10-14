@@ -1,0 +1,15 @@
+f = fun() {};
+
+g = fun(a) {};
+
+h = fun(x, y) { return x + y; };
+
+a = 0;
+k = fun(x, y, z) {
+    global a;
+    a = 1;
+    return a;
+};
+
+g(h(1,2));
+f();

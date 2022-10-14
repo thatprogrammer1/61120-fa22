@@ -1,0 +1,18 @@
+// Bin op 1
+x = 1 + 2;
+y = x * x;
+z = y / 5;
+y = y - x;
+
+p = "str" + 2 + None + true + false;
+b1 = x == y;
+b2 = x < y;
+b3 = x <= y;
+b4 = x >= y;
+b5 = x > y;
+
+b6 = b1 & b2;
+b7 = b3 | b4;
+
+u1 = -x;
+u2 = !b5;

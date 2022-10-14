@@ -1,0 +1,18 @@
+Slope = fun(p1, p2) {
+    _m = (p1.y - p2.y) / (p1["x"] - p2["x"]);
+    return _m;
+};
+
+FailurePoint = fun(x,y) {
+    p = {
+        -x:x;
+        !y:y;
+    };
+    return p;
+};
+
+a_point = FailurePoint(False, None);
+b_point = FailurePoint("something\n",True);
+
+print("This absolutely should fail in parsing");
+print(Slope(b_point, a_point));

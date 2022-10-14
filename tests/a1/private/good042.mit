@@ -1,0 +1,8 @@
+if (true) {
+  print("true");
+}
+if (5) {
+  print(none);
+} else {
+  print(false);
+}

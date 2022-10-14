@@ -1,0 +1,14 @@
+global none;
+none = None;
+a["asdf"].qwer[0][1].zxcb();
+b[None][0]["real\\ly?"]();
+consoleLog("asdfasdf \t\n");
+w_1 = {
+	part_1: "hello";
+	isTrue: true;
+	isFalse: false;
+	test: 192374291;
+	test2: 2147483647;
+	test3: 2147483648;
+	test4: 97123182147483648;
+};

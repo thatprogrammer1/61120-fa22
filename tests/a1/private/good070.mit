@@ -1,0 +1,10 @@
+x_0 = fun(x) {
+	global y;
+	y = 0;
+	print("hi!\n");
+};
+
+if (a == 1 | b == 2 & c >= 10 & c < 100) {
+	x_0(42);
+	print("ok!\n");
+}

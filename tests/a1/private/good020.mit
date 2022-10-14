@@ -1,0 +1,4 @@
+// tests whether operator precedence works as expected
+x = 1 + 2 * 3 + 4;
+// tests whether boolean operators precedence works as expected (NOTE: although passes parsing, may fail semantic checks)
+y = !(!(foo & bar) | baz) & foo;

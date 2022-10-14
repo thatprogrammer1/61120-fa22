@@ -1,0 +1,6 @@
+// tests while loops
+global _foo_;
+_foo_ = true;
+while (_foo_ & true | false) {
+	print("this is while");
+}

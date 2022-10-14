@@ -1,0 +1,118 @@
+// globals only
+global x;
+
+// globals and ifs
+if (10) {global x;}
+
+// globals and nested if elses
+if (192312) {
+    if (3) {global y;}
+} else {
+    if (1) {
+        if (3) {global y;}
+    } else {
+        global f;
+    }
+}
+
+// returns
+return 10;
+
+if (1) {
+    return 10;
+} else {
+    return 20;
+}
+
+// while loops
+while (2) {
+    global x;
+    return 10;
+}
+
+while (3) {
+    if (6) {
+        return 1;
+    } else {
+        global y;
+    }
+}
+
+// calls with varying number of arguments
+x();
+
+x(1);
+
+x(1, 2);
+
+x(1, 2, 3, 4);
+
+// assignments
+x = 1;
+
+x[2] = 1;
+
+x.x = 1;
+
+x.y[1] = 1;
+
+// long LHS parse test
+a.b.c.d.e.f.g.h.i.j.k[1][2].r[4] = 1;
+
+// function calls with long LHSs
+x.y();
+
+x.y(10);
+
+x.y(12, 14);
+
+// function declaration
+x = fun(x, y) {global y;};
+
+// nested function declarations
+x = fun(x) {
+    x = fun(y) {
+        return 10;
+    };
+};
+
+// records
+a = {};
+b = {a: 1;};
+x = {a: 1; b:2;};
+
+// nested records
+c = {a: {a: 1;}; b:1;};
+
+// or operator
+
+x = 1 | 2;
+
+// & operator
+x = 1 & 2 | 3;
+
+// ! operator
+x = 1 & !2 | 3;
+
+// nested booleans
+x = 1 & !true | 3;
+
+// nested calls
+x = y(1 + 2, 1);
+
+// complex statement
+
+if (true) {
+    return false;
+} else {
+    return lmao;
+}
+
+// maybe some of these?
+y = 1 & x.x & t & somethingelse + y[3];
+
+// this variable name should be valid
+_hello = world;
+
+// friday night drunk coding is fgun haha
+lmasodadkasghgf = afdhlasdfhgasdkg;

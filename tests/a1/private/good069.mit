@@ -1,0 +1,13 @@
+global asdf1;
+asdf1 = "thing: " + 22 + "\n";
+record1 = {
+	thing: "yes";
+	func: fun (x, y, z) {
+		consoleLog(x, y, "\t", z);
+		return {
+			a: 1;
+			b: x+y;
+		};
+	};
+};
+consoleLog(record1.func(1, 2, 3));

@@ -1,0 +1,5 @@
+x = fun() { return 1;};
+if ( fun(a, b) { return b; } ) {return a;}
+d[d[d.x]] = ! 3 + 5 <= 2 - 4;
+x = -(false);
+if (true) { if (true) {return 1;} }

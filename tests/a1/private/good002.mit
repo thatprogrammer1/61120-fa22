@@ -1,0 +1,6 @@
+global wk83;
+if ( false | 3 > 4) { return None; } else { x = 5; }
+while ( { ax : true ; b: None; c: false;}) { ax = 1; b = 3; return 3;}  
+while ( true) { ax = 1;}  
+a = { x: 3; } ;
+return 5 * 8 + 3;

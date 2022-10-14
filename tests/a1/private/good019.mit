@@ -1,0 +1,4 @@
+// tests whether "None", "true" and "false" literals work as expected
+x = None;
+y = true;
+z = false;

@@ -1,0 +1,6 @@
+return 2;
+if (x) {
+    global 3;
+}
+x = 3;
+return x;

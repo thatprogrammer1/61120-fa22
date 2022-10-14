@@ -1,0 +1,7 @@
+if (true) {
+    return false;
+}
+
+if (true) {
+    return true;
+} else
