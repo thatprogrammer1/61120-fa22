@@ -11,6 +11,9 @@ If you're not using the virtual machine, install the following dependencies:
 ```
 sudo apt install git build-essential default-jre 
 
+# for P3
+sudo apt install flex bison 
+
 # faster CMake backend for faster builds
 sudo apt install ninja-build
 
@@ -24,30 +27,39 @@ Here is an Ubuntu 22.04 (LTS) virtual machine with these dependencies already in
 [link](https://drive.google.com/file/d/1kr1b8pTCcWag4sDHVnenqPYmEgCJgLYU/view?usp=sharing).
 
 Password: IwillgetanA
-#### Docker
 
-If you want to use Docker instead of the virtual machine, you should:
-1. [Install Docker Desktop](https://docs.docker.com/get-docker/)
-2. Download the docker image
+### Docker
+
+You can use Docker instead of the virtual machine. You'll need to [install Docker Desktop](https://docs.docker.com/get-docker/)
+
+To start a docker container, run the following command.
 ```sh
-docker pull lgovedic/mit-61120:0.1
-```
-3. Start a docker container.
-```sh
-docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --name=61120 --mount type=bind,source=${PWD},target=/src lgovedic/mit-61120:0.1 bash
+docker run -it --rm \
+    --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
+    --name=61120 --mount type=bind,source=${PWD},target=/src \
+     lgovedic/mit-61120:0.2 bash
 ```
 This will start the container, map the current repository in it, and
 finally pull up a shell inside the container.
+It will also pull the image from the repository if you don't have it yet.
 Once the shell starts, just write commands like you were using a regular
-Limux terminal.
+Linux terminal.
 
 ```sh
 root@221b746bd366:/# cd src
 root@221b746bd366:/src# cmake ... # or  make ...
 ```
 
-### Updating
+##### Advanced
+If you want to customize your docker image, edit the Dockerfile and build by running the command below.
+Make sure you specify the same tag for the build and execution (replace `lgovedic/mit-61120:0.2` in the command above).
 
+```sh
+# inside your project root
+docker build . -t <image tag>
+```
+
+### Updating
 To pull updates from this repository, go to your own repository, and run:
 
 ```sh

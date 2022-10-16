@@ -12,4 +12,6 @@ RUN apt update && apt -y --no-install-recommends install \
     cmake \
     gdb \
     default-jre \
-    ninja-build 
+    ninja-build  \
+    flex \
+    bison \
