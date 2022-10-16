@@ -1,14 +1,10 @@
-global none;
-none = None;
-a["asdf"].qwer[0][1].zxcb();
-b[None][0]["real\\ly?"]();
-consoleLog("asdfasdf \t\n");
-w_1 = {
-	part_1: "hello";
-	isTrue: true;
-	isFalse: false;
-	test: 192374291;
-	test2: 2147483647;
-	test3: 2147483648;
-	test4: 97123182147483648;
-};
+// functions are expressions
+if(fun(){}) { return 0; }
+
+global a;
+if(false | true & a >= 1000000 | 56 < (7/a == None > 6) ) {
+    doNothing();
+} else {
+    dont();
+}
+x = y + (_z3 <= -7+-9*-a3);
